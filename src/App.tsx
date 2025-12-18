@@ -59,7 +59,6 @@ export default function App() {
         <Col md={8}>
           <Row>
             <Col md={6}>
-              test
               <SearchBar value={search} onChange={setSearch} />
             </Col>
             <Col md={6}>
