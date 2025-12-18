@@ -48,8 +48,6 @@ export default function App() {
     });
   };
 
-  console.log(cart);
-
   const handleResetSearch = () => {
     setSearch("");
     setCategory("ALL");
@@ -61,6 +59,7 @@ export default function App() {
         <Col md={8}>
           <Row>
             <Col md={6}>
+              test
               <SearchBar value={search} onChange={setSearch} />
             </Col>
             <Col md={6}>
@@ -82,7 +81,6 @@ export default function App() {
             </Col>
           </Row>
         </Col>
-
         <Col md={4} className="mt-2">
           <Row>
             <Col md={12}>
