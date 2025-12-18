@@ -1,4 +1,3 @@
-import React from "react";
 import type { IProduct } from "../../types/product.model";
 import {
   Button,
