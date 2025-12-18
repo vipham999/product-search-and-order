@@ -48,6 +48,8 @@ export default function App() {
     });
   };
 
+  console.log(cart);
+
   const handleResetSearch = () => {
     setSearch("");
     setCategory("ALL");
