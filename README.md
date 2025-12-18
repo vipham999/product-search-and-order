@@ -1,73 +1,91 @@
-# React + TypeScript + Vite
+## Buymed Screening Test – Product Search & Cart
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Ứng dụng React nhỏ mô phỏng màn hình tìm kiếm và đặt hàng sản phẩm dược cho bài **Buymed Frontend Screening Test**.  
+Người dùng có thể tìm kiếm thuốc, lọc theo nhóm, thêm vào giỏ và xem tóm tắt đơn hàng.
 
-Currently, two official plugins are available:
+---
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+### 🧩 Tính năng chính
 
-## React Compiler
+- **Tìm kiếm sản phẩm**
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+  - Ô `Search products...` lọc theo tên thuốc (không phân biệt hoa thường).
+  - Kết quả được load giả lập thông qua `fetchFilteredProducts` (delay ~800ms) để mô phỏng gọi API.
 
-## Expanding the ESLint configuration
+- **Lọc theo nhóm thuốc (Category)**
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+  - Dropdown `CategoryFilter` với các giá trị: `ALL`, `Pain Relief`, `Antibiotic`, `Supplement`, `Allergy`.
+  - Có thể kết hợp đồng thời với ô tìm kiếm.
 
-```js
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
+- **Danh sách sản phẩm**
 
-      // Remove tseslint.configs.recommended and replace with this
-      tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      tseslint.configs.stylisticTypeChecked,
+  - Hiển thị tên, nhóm, giá, và badge **Rx** cho thuốc kê đơn (`isPrescription = true`).
+  - Nút **Add** cho phép thêm sản phẩm vào giỏ.
+  - Khi đang tải, bảng hiển thị skeleton loading.
 
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+- **Giỏ hàng (Cart)**
+
+  - Hiển thị danh sách sản phẩm đã chọn, số lượng, thành tiền mỗi dòng và **tổng đơn hàng**.
+  - Cho phép chỉnh số lượng (1–99) và xoá sản phẩm khỏi giỏ.
+
+- **Reset bộ lọc**
+  - Nút **Refresh** đưa `search` về rỗng và `category` về `ALL`.
+
+---
+
+### 🛠 Tech stack
+
+- **React + TypeScript + Vite**
+- **Reactstrap** (UI components, grid, table, form, card,…)
+- **Font Awesome** (icon giỏ hàng, xoá, refresh)
+
+---
+
+### 🚀 Cách chạy project
+
+Yêu cầu:
+
+- Node.js (khuyến nghị >= 18)
+- npm
+
+Các bước:
+
+```bash
+# Cài đặt dependencies
+npm install
+
+# Chạy dev server (Vite)
+npm run dev
 ```
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+Mặc định Vite sẽ chạy ở địa chỉ tương tự như: `http://localhost:5173`.
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
+Build production:
 
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+```bash
+npm run build
 ```
+
+Preview bản build:
+
+```bash
+npm run preview
+```
+
+---
+
+### 🧱 Cấu trúc chính
+
+- **`src/App.tsx`**: Ghép các phần Search, Filter, ProductList, Cart và quản lý state toàn cục (search, category, cart, loading).
+- **`src/data/products.ts`**: Danh sách sản phẩm mẫu.
+- **`src/helper/helper-functions.ts`**: Hàm `fetchFilteredProducts` mô phỏng API filter với `setTimeout`.
+- **`src/components/search-bar`**: Component ô tìm kiếm.
+- **`src/components/category-filter`**: Component chọn nhóm sản phẩm.
+- **`src/components/product`**: Hiển thị bảng sản phẩm và nút thêm vào giỏ.
+- **`src/components/cart`**: Hiển thị giỏ hàng và tính tổng tiền.
+
+---
+
+### 📌 Ghi chú
+
+- Ứng dụng hiện tại sử dụng dữ liệu tĩnh và filter trên client.
