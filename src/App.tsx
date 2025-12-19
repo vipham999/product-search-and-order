@@ -58,18 +58,25 @@ export default function App() {
       <Row className="g-2">
         <Col md={8}>
           <Row>
+            {/* Search for products */}
             <Col md={6}>
               <SearchBar value={search} onChange={setSearch} />
             </Col>
+
+            {/* Filter by category */}
             <Col md={6}>
               <CategoryFilter value={category} onChange={setCategory} />
             </Col>
+
+            {/* Reset search and category */}
             <Col md={12} className="mb-2">
               <Button color="primary" onClick={handleResetSearch}>
                 <FontAwesomeIcon icon={faRefresh} className="me-1" />
                 Refresh
               </Button>
             </Col>
+
+            {/* Product list */}
             <Col md={12}>
               <ProductList
                 products={filteredProducts}
@@ -82,6 +89,7 @@ export default function App() {
         </Col>
         <Col md={4} className="mt-2">
           <Row>
+            {/* Cart */}
             <Col md={12}>
               <Cart
                 cart={cart}

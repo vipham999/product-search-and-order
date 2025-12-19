@@ -41,7 +41,13 @@ Người dùng có thể tìm kiếm thuốc, lọc theo nhóm, thêm vào giỏ
 
 ---
 
-### 🚀 Cách chạy project
+### 🚀 Demo online
+
+- **Domain**: [`https://vipham999.github.io/product-search-and-order/`](https://vipham999.github.io/product-search-and-order/)
+
+---
+
+### 🖥️ Cách chạy project local
 
 Yêu cầu:
 

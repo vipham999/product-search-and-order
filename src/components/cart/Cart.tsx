@@ -30,8 +30,10 @@ const Cart = ({ cart, products, onQuantityChange }: CartProps) => {
     return (
       <Card>
         <CardBody>
-          <FontAwesomeIcon icon={faCartShopping} className="me-1" />
-          Cart is empty
+          <CardTitle tag="h4">
+            <FontAwesomeIcon icon={faCartShopping} className="me-1" />
+            Cart is empty
+          </CardTitle>
         </CardBody>
       </Card>
     );
